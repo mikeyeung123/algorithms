@@ -14,12 +14,12 @@ My implementation of selected algorithms discussed in Tufts Comp 160 in Spring 2
 
 **Complexity:**
 
-|          |Average |Worst case|
-|----------|--------|----------|
-|**Space** |O(n)    |O(n)      |
-|**Search**|O(log n)|O(n)      |
-|**Insert**|O(log n)|O(n)      |
-|**Delete**|O(log n)|O(n)      |
+|          |Average     |Worst case|
+|----------|------------|----------|
+|**Space** |*O*(*n*)    |*O*(*n*)  |
+|**Search**|*O*(log *n*)|*O*(*n*)  |
+|**Insert**|*O*(log *n*)|*O*(*n*)  |
+|**Delete**|*O*(log *n*)|*O*(*n*)  |
 
 **Types:** Value types must conform to `Comparable` (`<` and `==` must be implemented). Most built-in numeric types like `Int` are comparable.
 
