@@ -4,7 +4,7 @@
     Mike Yeung
 */
 
-enum ChildType: Int {
+private enum ChildType: Int {
     case Left, Right, Root
 }
 
