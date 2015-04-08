@@ -54,6 +54,10 @@ class RedBlackTree<T: Comparable> {
     
     private var root: Node<T>?
     
+    init() {
+        // Fixes compiler bug
+    }
+    
     private func search(#value: T, node: Node<T>?) -> (found: Bool, node: Node<T>?) {
         if node == nil {
             return (false, nil)
@@ -84,7 +88,7 @@ class RedBlackTree<T: Comparable> {
         let grandchild = child.children![direction.rawValue]
         node.children![oppositeDirection(direction).rawValue] = grandchild
         grandchild.parent = node
-        grandchild.childType = oppositeDirection(grandchild.childType!)
+        grandchild.childType = oppositeDirection(direction)
         child.children![direction.rawValue] = node
         node.parent = child
         node.childType = oppositeDirection(direction)
@@ -94,11 +98,10 @@ class RedBlackTree<T: Comparable> {
     }
     
     private func recolorUpwards(var node: Node<T>) {
-        if node.parent == nil || node.parent!.color == .Black {
-            root!.color == .Black
-        } else {
+        if node.parent != nil && node.parent!.color == .Red {
             var parent = node.parent!
             let grandparent = parent.parent!
+            let x = parent.childType!
             let uncle = grandparent.children![oppositeDirection(parent.childType!).rawValue]
             if uncle.color == .Red {
                 parent.switchColor()
@@ -115,6 +118,7 @@ class RedBlackTree<T: Comparable> {
                 parent.switchColor()
             }
         }
+        root?.color = .Black
     }
     
     // If value doesn't exist, insert it
@@ -127,6 +131,7 @@ class RedBlackTree<T: Comparable> {
                 let toInsert = Node(value: value, color: .Red, parent: result.node!.parent, childType: result.node!.childType)
                 result.node!.parent!.children![result.node!.childType!.rawValue] = toInsert
                 recolorUpwards(toInsert)
+                let x = toInsert.childType!
             }
         }
     }
@@ -218,5 +223,38 @@ class RedBlackTree<T: Comparable> {
         if result.found {
             delete(result.node!)
         }
+    }
+    
+    private func colorString(color: Color) -> String {
+        if color == .Red {
+            return "R"
+        } else {
+            return "B"
+        }
+    }
+    
+    private func printTree(nodes: [Node<T>]) {
+        if nodes.count == 0 {
+            return
+        }
+        var children = [Node<T>]()
+        for node in nodes {
+            if node.value == nil {
+                print("D ")
+            } else {
+                print("\(node.value!)" + colorString(node.color) + " ")
+                children += node.children!
+            }
+        }
+        println()
+        printTree(children)
+    }
+    
+    // For debugging only, very rudimentary
+    func printTree() {
+        if root != nil {
+            printTree([root!])
+        }
+        println()
     }
 }
