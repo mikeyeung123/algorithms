@@ -2,8 +2,6 @@
 
 My implementation of selected algorithms discussed in Tufts Comp 160 in Spring 2015.
 
----
-
 ## Binary Search Tree
 
 **File:** BinarySearchTree.swift
