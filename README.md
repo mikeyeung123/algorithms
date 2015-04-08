@@ -30,6 +30,28 @@ My implementation of selected algorithms discussed in Tufts Comp 160 in Spring 2
 - `insert(value)` searches for value and inserts it if it doesn’t exist
 - `delete(value)` searches for value and deletes it if it exists
 
+## Longest Common Subsequence
+
+**File:** LongestCommonSubsequence.swift
+
+**Last updated:** 8 April 2015
+
+**Description:** An efficient algorithm using dynamic programming to find the longest common subsequence (LCS) in 2 sequences. LCSs do not have to be contiguous.
+
+**Complexity:** *m* and *n* are lengths of first and second sequence:
+
+|         |Worst case|
+|---------|----------|
+|**Space**|*O*(*mn*) |
+|**Time** |*O*(*mn*) |
+
+**Types:** Value types must conform to `Hashable` (`==` and calculated `hashValue` must be implemented). Most built-in types like `Int` and `String` are hashable.
+
+**Public properties:** None
+
+**Public functions:**
+- `LCS(first, second)` calculates and returns all LCSs in an array
+
 ---
 
 More to come!

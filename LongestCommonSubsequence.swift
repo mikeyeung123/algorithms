@@ -1,6 +1,6 @@
 /*
     Algorithm to find longest common (non-)contiguous subsequence
-    7 April 2015
+    8 April 2015
     Mike Yeung
 */
 
