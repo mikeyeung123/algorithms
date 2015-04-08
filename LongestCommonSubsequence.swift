@@ -6,8 +6,6 @@
 
 private typealias Result = (length: Int, match: Bool)
 
-// Arrays of results are hashed so inserting prevents duplicates
-
 private func ==<T>(lhs: HashableArray<T>, rhs: HashableArray<T>) -> Bool {
     return lhs.array == rhs.array
 }
@@ -23,7 +21,7 @@ private class HashableArray<T: Hashable>: Hashable {
 }
 
 private class LCSs<T: Hashable> {
-    var sequences = [(HashableArray<T>): Void]()
+    var sequences = Set<HashableArray<T>>()
 }
 
 // Returns all matches with the same length as the bottom right elements
@@ -78,7 +76,7 @@ private func levelMatches(results: [[Result]], right: Int, bottom: Int) -> [(Int
 private func trace<T: Equatable>(a1: [T], results: [[Result]], i: Int, j: Int, var sequenceSoFar: [T], sequences: LCSs<T>) {
     sequenceSoFar.append(a1[i - 1])
     if results[i - 1][j - 1].length == 0 {
-        sequences.sequences[HashableArray(array: sequenceSoFar)] = ()
+        sequences.sequences.insert(HashableArray(array: sequenceSoFar))
     } else {
         for (x, y) in levelMatches(results, i - 1, j - 1) {
             trace(a1, results, x, y, sequenceSoFar, sequences)
@@ -109,5 +107,5 @@ func LCS<T: Hashable>(a1: [T], a2: [T]) -> [[T]] {
         trace(a1, results, x, y, [T](), sequences)
     }
     
-    return Array(sequences.sequences.keys).map{$0.array.reverse()}
+    return Array(sequences.sequences).map{$0.array.reverse()}
 }
