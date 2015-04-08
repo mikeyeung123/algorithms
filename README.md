@@ -42,8 +42,8 @@ My implementation of selected algorithms discussed in Tufts Comp 160 in Spring 2
 
 |         |Worst case|
 |---------|----------|
-|**Space**|*O*(*mn*) |
 |**Time** |*O*(*mn*) |
+|**Space**|*O*(*mn*) |
 
 **Types:** Value types must conform to `Hashable` (`==` and calculated `hashValue` must be implemented). Most built-in types like `Int` and `String` are hashable.
 
